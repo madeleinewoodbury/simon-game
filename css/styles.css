@@ -1,12 +1,18 @@
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
+  background-color: rgb(36, 35, 35);
 }
 
+header {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: -20px;
+  color: white;
+}
 .container {
   max-width: 600px;
-  height: 600px;
-  background-color: #333;
+  height: 500px;
   margin: 0 auto;
   display: flex;
   align-content: center;
@@ -19,48 +25,93 @@ body {
   width: 200px;
   height: 200px;
   margin: 0.5rem;
+  transition: all ease 0.3s;
+  cursor: pointer;
+  position: relative;
 }
 
 .blue {
-  background-color: blue;
   border-top-left-radius: 200px;
   border-bottom-left-radius: 20px;
   border-top-right-radius: 20px;
+  background-color: rgba(0, 0, 255, 0.8);
+  box-shadow: 2px 6px 3px rgb(4, 4, 99);
+}
+
+.blue:hover {
+  background-color: rgba(0, 0, 255, 1);
+  box-shadow: none;
+  top: 3px;
 }
 
 .red {
-  background-color: red;
   border-top-right-radius: 200px;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  background-color: rgba(255, 0, 0, 0.8);
+  box-shadow: -1px 6px 3px rgb(99, 4, 4);
+}
+
+.red:hover {
+  background-color: rgba(255, 0, 0, 1);
+  box-shadow: none;
+  top: 3px;
 }
 
 .green {
-  background-color: green;
   border-bottom-left-radius: 200px;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  background-color: rgba(0, 255, 0, 0.7);
+  box-shadow: -2px 6px 3px rgb(4, 99, 4);
+}
+
+.green:hover {
+  background-color: rgba(0, 255, 0, 1);
+  box-shadow: none;
+  top: -3px;
 }
 
 .yellow {
-  background-color: yellow;
   border-bottom-right-radius: 200px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
+  background-color: rgba(255, 255, 0, 0.8);
+  box-shadow: -4px 6px 3px rgb(99, 99, 4);
+}
+
+.yellow:hover {
+  background-color: rgba(255, 255, 0, 1);
+  box-shadow: none;
+  top: -3px;
 }
 
 .circle {
   position: absolute;
-  top: 247.5px;
+  top: 197.5px;
   color: white;
   text-align: center;
   font-size: 1.5rem;
   letter-spacing: 1px;
-  background: black;
+  background-color: rgb(36, 35, 35);
   width: 100px;
   height: 100px;
   line-height: 100px;
   border-radius: 100%;
   border: 5px solid white;
   cursor: pointer;
+}
+
+.circle:hover {
+  background-color: rgb(27, 26, 26);
+}
+
+.watch {
+  border-color: rgb(198, 137, 255);
+  color: rgb(198, 137, 255);
+}
+
+.play {
+  border-color: rgb(143, 255, 176);
+  color: rgb(143, 255, 176);
 }
