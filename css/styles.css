@@ -10,6 +10,7 @@ header {
   margin-bottom: -20px;
   color: white;
 }
+
 .container {
   max-width: 600px;
   height: 500px;
@@ -38,7 +39,7 @@ header {
   box-shadow: 2px 6px 3px rgb(4, 4, 99);
 }
 
-.blue:hover {
+.blue-press {
   background-color: rgba(0, 0, 255, 1);
   box-shadow: none;
   top: 3px;
@@ -52,7 +53,7 @@ header {
   box-shadow: -1px 6px 3px rgb(99, 4, 4);
 }
 
-.red:hover {
+.red-press {
   background-color: rgba(255, 0, 0, 1);
   box-shadow: none;
   top: 3px;
@@ -66,10 +67,10 @@ header {
   box-shadow: -2px 6px 3px rgb(4, 99, 4);
 }
 
-.green:hover {
+.green-press {
   background-color: rgba(0, 255, 0, 1);
   box-shadow: none;
-  top: -3px;
+  top: 3px;
 }
 
 .yellow {
@@ -80,13 +81,13 @@ header {
   box-shadow: -4px 6px 3px rgb(99, 99, 4);
 }
 
-.yellow:hover {
+.yellow-press {
   background-color: rgba(255, 255, 0, 1);
   box-shadow: none;
-  top: -3px;
+  top: 3px;
 }
 
-.circle {
+.start-btn {
   position: absolute;
   top: 197.5px;
   color: white;
@@ -102,7 +103,7 @@ header {
   cursor: pointer;
 }
 
-.circle:hover {
+.start-btn:hover {
   background-color: rgb(27, 26, 26);
 }
 
