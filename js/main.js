@@ -1,18 +1,30 @@
-const blue = document.querySelector('.blue');
-const red = document.querySelector('.red');
-const green = document.querySelector('.green');
-const yellow = document.querySelector('.yellow');
 const btnContainer = document.querySelector('.container');
 const startBtn = document.querySelector('.start-btn');
-const errorSound = new Audio('audio/error_sound.mp3');
+const levelDisplay = document.querySelector('.level');
 
-const simonBtns = [];
+let simonBtns;
 let playerBtns;
-
 let click;
+let level;
+
+// Start Game
+const initGame = () => {
+  startBtn.removeEventListener('click', initGame);
+  setInitValues();
+  simonPlays();
+};
+
+const setInitValues = () => {
+  simonBtns = [];
+  playerBtns = [];
+  level = 1;
+  levelDisplay.classList.remove('game-over');
+};
 
 // Simon Plays
 const simonPlays = () => {
+  levelDisplay.textContent = `Level ${level}`;
+  watch();
   // Add random num to simonBtns
   getRandom();
 
@@ -34,6 +46,7 @@ const playerTurn = () => {
 
   setTimeout(() => {
     btnContainer.addEventListener('click', playerClick);
+    play();
   }, 1000);
 };
 
@@ -52,10 +65,10 @@ const compare = () => {
     click++;
     if (click >= simonBtns.length) {
       btnContainer.removeEventListener('click', playerClick);
-      simonPlays();
+      level++;
+      setTimeout(simonPlays, 750);
     }
   } else {
-    btnContainer.removeEventListener('click', playerClick);
     gameOver();
   }
 };
@@ -120,5 +133,29 @@ const playYellow = () => {
 };
 
 const gameOver = () => {
-  console.log('Game over');
+  btnContainer.removeEventListener('click', playerClick);
+  const errorSound = new Audio('audio/error_sound.mp3');
+  setTimeout(() => {
+    errorSound.play();
+    startBtn.className = 'start-btn';
+    startBtn.textContent = 'Start';
+    startBtn.addEventListener('click', initGame);
+    levelDisplay.classList.add('game-over');
+    levelDisplay.textContent = `Game Over... You made it to level ${level}`;
+  }, 750);
 };
+
+// Start Button
+const watch = () => {
+  startBtn.classList.remove('play');
+  startBtn.classList.add('watch');
+  startBtn.textContent = 'Watch';
+};
+
+const play = () => {
+  startBtn.classList.remove('watch');
+  startBtn.classList.add('play');
+  startBtn.textContent = 'Play';
+};
+
+startBtn.addEventListener('click', initGame);
