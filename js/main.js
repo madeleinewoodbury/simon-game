@@ -1,7 +1,3 @@
-const btnContainer = document.querySelector('.container');
-const startBtn = document.querySelector('.start-btn');
-const levelDisplay = document.querySelector('.level');
-
 let simonBtns;
 let playerBtns;
 let click;
@@ -9,7 +5,7 @@ let level;
 
 // Start Game
 const initGame = () => {
-  startBtn.removeEventListener('click', initGame);
+  $('.start-btn').off('click', initGame);
   setInitValues();
   simonPlays();
 };
@@ -18,14 +14,13 @@ const setInitValues = () => {
   simonBtns = [];
   playerBtns = [];
   level = 1;
-  levelDisplay.classList.remove('game-over');
+  $('.level').removeClass('game-over');
 };
 
 // Simon Plays
 const simonPlays = () => {
-  levelDisplay.textContent = `Level ${level}`;
+  $('.level').text(`Level ${level}`);
   watch();
-  // Add random num to simonBtns
   getRandom();
 
   let i = 0;
@@ -45,18 +40,17 @@ const playerTurn = () => {
   playerBtns = [];
 
   setTimeout(() => {
-    btnContainer.addEventListener('click', playerClick);
+    $('.box').on('click', playerClick);
     play();
   }, 1000);
 };
 
 const playerClick = e => {
-  if (e.target.classList.contains('box')) {
-    let btn = parseInt(e.target.getAttribute('data-num'));
-    playerBtns.push(btn);
-    playCurrentBtn(btn);
-    compare();
-  }
+  let target = $(e.target);
+  let btn = parseInt(target.attr('data-num'));
+  playerBtns.push(btn);
+  playCurrentBtn(btn);
+  compare();
 };
 
 // Compare current button with Simon's buttons
@@ -64,7 +58,7 @@ const compare = () => {
   if (playerBtns[click] === simonBtns[click]) {
     click++;
     if (click >= simonBtns.length) {
-      btnContainer.removeEventListener('click', playerClick);
+      $('.box').off('click', playerClick);
       level++;
       setTimeout(simonPlays, 750);
     }
@@ -101,9 +95,9 @@ const getRandom = () => {
 
 // Display button press with 'press' class
 const displayBtnPress = color => {
-  document.querySelector(`.${color}`).classList.add(`${color}-press`);
+  $(`.${color}`).addClass(`${color}-press`);
   setTimeout(() => {
-    document.querySelector(`.${color}`).classList.remove(`${color}-press`);
+    $(`.${color}`).removeClass(`${color}-press`);
   }, 500);
 };
 
@@ -133,29 +127,36 @@ const playYellow = () => {
 };
 
 const gameOver = () => {
-  btnContainer.removeEventListener('click', playerClick);
+  $('.box').off('click', playerClick);
+
   const errorSound = new Audio('audio/error_sound.mp3');
   setTimeout(() => {
     errorSound.play();
-    startBtn.className = 'start-btn';
-    startBtn.textContent = 'Start';
-    startBtn.addEventListener('click', initGame);
-    levelDisplay.classList.add('game-over');
-    levelDisplay.textContent = `Game Over... You made it to level ${level}`;
+
+    $('.start-btn')
+      .removeClass('play')
+      .text('Start')
+      .on('click', initGame);
+
+    $('.level')
+      .addClass('game-over')
+      .text(`Game Over... You made it to level ${level}`);
   }, 750);
 };
 
 // Start Button
 const watch = () => {
-  startBtn.classList.remove('play');
-  startBtn.classList.add('watch');
-  startBtn.textContent = 'Watch';
+  $('.start-btn')
+    .removeClass('play')
+    .addClass('watch')
+    .text('Watch');
 };
 
 const play = () => {
-  startBtn.classList.remove('watch');
-  startBtn.classList.add('play');
-  startBtn.textContent = 'Play';
+  $('.start-btn')
+    .removeClass('watch')
+    .addClass('play')
+    .text('Play');
 };
 
-startBtn.addEventListener('click', initGame);
+$('.start-btn').on('click', initGame);

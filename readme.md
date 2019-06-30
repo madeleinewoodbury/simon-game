@@ -1,7 +1,7 @@
 # The Simon Game
 
 A simple simon game where the object is to follow Simon and press the correct buttons in the right order.
-Created with pure HTML, CSS and JavaScript.
+Created with HTML, CSS, JavaScript and jQuery
 
 ## Demo
 
